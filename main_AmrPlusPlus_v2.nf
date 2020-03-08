@@ -53,6 +53,7 @@ Channel
     .set { reads }
 
 process RunQC {
+    errorStrategy 'ignore'
     tag { sample_id }
 
     publishDir "${params.output}/RunQC", mode: 'copy', pattern: '*.fastq',
@@ -87,6 +88,7 @@ process RunQC {
 trimmomatic_stats.toSortedList().set { trim_stats }
 
 process QCStats {
+    errorStrategy 'ignore'
     tag { sample_id }
 
     publishDir "${params.output}/RunQC", mode: 'copy',
@@ -108,6 +110,7 @@ process QCStats {
 
 if( !params.host_index ) {
     process BuildHostIndex {
+        errorStrategy 'ignore'
         publishDir "${params.output}/BuildHostIndex", mode: "copy"
 
         tag { host.baseName }
@@ -125,6 +128,7 @@ if( !params.host_index ) {
 }
 
 process AlignReadsToHost {
+    errorStrategy 'ignore'
     tag { sample_id }
 
     publishDir "${params.output}/AlignReadsToHost", mode: "copy"
@@ -143,6 +147,7 @@ process AlignReadsToHost {
 }
 
 process RemoveHostDNA {
+    errorStrategy 'ignore'
     tag { sample_id }
 
     publishDir "${params.output}/RemoveHostDNA", mode: "copy", pattern: '*.bam',
@@ -167,6 +172,7 @@ process RemoveHostDNA {
 idxstats_logs.toSortedList().set { host_removal_stats }
 
 process HostRemovalStats {
+    errorStrategy 'ignore'
     tag { sample_id }
 
     publishDir "${params.output}/RemoveHostDNA", mode: "copy",
@@ -186,6 +192,7 @@ process HostRemovalStats {
 }
 
 process NonHostReads {
+    errorStrategy 'ignore'
     tag { sample_id }
 
     publishDir "${params.output}/NonHostReads", mode: "copy"
