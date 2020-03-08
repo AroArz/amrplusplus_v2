@@ -34,3 +34,9 @@ More Information
 - [Software Requirements](https://github.com/meglab-metagenomics/amrplusplus_v2/blob/master/docs/requirements.md)
 - [FAQs](https://github.com/meglab-metagenomics/amrplusplus_v2/blob/master/docs/FAQs.md)
 - [Contact](https://github.com/meglab-metagenomics/amrplusplus_v2/blob/master/docs/contact.md)
+
+Running
+--------
+```bash
+nextflow run main_AmrPlusPlus_v2 -profile singularity_slurm
+```
